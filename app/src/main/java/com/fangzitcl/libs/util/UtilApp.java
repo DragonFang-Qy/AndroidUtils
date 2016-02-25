@@ -11,6 +11,8 @@ import android.graphics.drawable.Drawable;
 
 import java.util.List;
 
+import static java.lang.System.exit;
+
 /**
  * &nbsp;&nbsp;包括:
  * <ol>
@@ -20,7 +22,9 @@ import java.util.List;
  * <li> 获取本应用程序包名 {@link #getPackageName(Context)} </li>
  * <li> 获取正在运行的应用 {@link #getRunningProcess(Context)} </li>
  * <li> 获取本应用Icon {@link #getIcon(Context)} </li>
+ * <li> 退出应用程序 {@link #exitMyApp()} </li>
  * </ol>
+ *
  * @class_name: UtilApp
  * @package_name: com.fangzitcl.libs.util
  * @acthor: Fang_QingYou
@@ -113,7 +117,7 @@ public class UtilApp {
      * @param context
      * @return
      */
-    public List<RunningAppProcessInfo> getRunningProcess(Context context) {
+    public static List<RunningAppProcessInfo> getRunningProcess(Context context) {
 
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         //获取正在运行的应用
@@ -129,7 +133,7 @@ public class UtilApp {
      * @param context
      * @return
      */
-    public Drawable getIcon(Context context) {
+    public static Drawable getIcon(Context context) {
 
         PackageManager pm = (PackageManager) context.getPackageManager();
 
@@ -144,5 +148,12 @@ public class UtilApp {
 
     }
 
+    /**
+     * 退出应用程序
+     */
+    public static void exitMyApp() {
+        android.os.Process.killProcess(android.os.Process.myPid());
+        exit(0);// 0 代表正常退出
+    }
 
 }

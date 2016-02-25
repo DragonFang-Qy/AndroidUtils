@@ -199,4 +199,38 @@ public class UtilScreen {
 
     }
 
+
+    /**
+     * 加密解密算法  如j = 0加密，需j = 1进行解密，反之亦然。 'a'为密钥，可随意更改
+     */
+    public static String convertMD5(String inStr, int j) {
+
+        char[] a = inStr.toCharArray();
+        if (j == 0) {
+            for (int i = 0; i < a.length; i++) {
+                a[i] = (char) (a[i] + 'a');
+            }
+        } else if (j == 1) {
+            for (int i = 0; i < a.length; i++) {
+                a[i] = (char) (a[i] - 'a');
+            }
+        }
+
+        return new String(a);
+    }
+
+
+    /**
+     * 加密解密算法 执行一次加密，两次解密
+     */
+    public static String convertMD5(String inStr) {
+
+        char[] a = inStr.toCharArray();
+        for (int i = 0; i < a.length; i++) {
+            a[i] = (char) (a[i] ^ 't');
+        }
+        String s = new String(a);
+        return s;
+
+    }
 }
